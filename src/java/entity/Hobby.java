@@ -6,19 +6,27 @@
 package entity;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 
 /**
  *
  * @author pagh
  */
 @Entity
+@NamedQueries(
+{
+    @NamedQuery(name = "Hobby.findAll", query = "SELECT h FROM Hobby h")
+})
 public class Hobby implements Serializable
 {
 
@@ -28,14 +36,27 @@ public class Hobby implements Serializable
     private Long id;
     private String name;
     private String description;
-    @ManyToMany(mappedBy = "hobbyList")
+    @ManyToMany(mappedBy = "hobbyList", cascade = CascadeType.ALL)
     private Collection<Person> personList;
+
+    public void addHobbyToPerson(Person p)
+    {
+        if (personList == null)
+        {
+            personList = new ArrayList();
+            personList.add(p);
+        }
+        else
+        {
+            personList.add(p);
+        }
+    }
 
     public Hobby()
     {
     }
 
-    public Hobby(String name, String description,List<Person> personList)
+    public Hobby(String name, String description, List<Person> personList)
     {
         this.name = name;
         this.description = description;
@@ -52,7 +73,6 @@ public class Hobby implements Serializable
         this.personList = personList;
     }
 
-    
     public String getName()
     {
         return name;
@@ -72,7 +92,6 @@ public class Hobby implements Serializable
     {
         this.description = description;
     }
-    
 
     public Long getId()
     {
@@ -84,6 +103,4 @@ public class Hobby implements Serializable
         this.id = id;
     }
 
-
-    
 }

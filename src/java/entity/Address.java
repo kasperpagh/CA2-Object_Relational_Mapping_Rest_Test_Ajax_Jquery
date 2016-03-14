@@ -6,7 +6,9 @@
 package entity;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Collection;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -27,10 +29,22 @@ public class Address implements Serializable
     private Integer id;
     private String Steet;
     private String additionalInfo;
-    
-    @OneToMany(mappedBy = "address")
+
+    @OneToMany(mappedBy = "address", cascade = CascadeType.ALL)
     private Collection<InfoEntity> infoEntityList;
-    
+
+    public void addPersonToAddress(InfoEntity ie)
+    {
+        if (infoEntityList == null)
+        {
+            infoEntityList = new ArrayList();
+            infoEntityList.add(ie);
+        }
+        else
+        {
+            infoEntityList.add(ie);
+        }
+    }
 
     public Address(String Steet, String additionalInfo)
     {
@@ -41,11 +55,20 @@ public class Address implements Serializable
     public Address()
     {
     }
-    
 
     public String getSteet()
     {
         return Steet;
+    }
+
+    public Collection<InfoEntity> getInfoEntityList()
+    {
+        return infoEntityList;
+    }
+
+    public void setInfoEntityList(Collection<InfoEntity> infoEntityList)
+    {
+        this.infoEntityList = infoEntityList;
     }
 
     public void setSteet(String Steet)
@@ -62,7 +85,6 @@ public class Address implements Serializable
     {
         this.additionalInfo = additionalInfo;
     }
-    
 
     public Integer getId()
     {
@@ -74,6 +96,4 @@ public class Address implements Serializable
         this.id = id;
     }
 
-
-    
 }

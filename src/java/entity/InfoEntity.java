@@ -6,8 +6,10 @@
 package entity;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -35,21 +37,54 @@ public class InfoEntity implements Serializable
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String email;
-    
-    
-    @OneToMany(mappedBy = "infoEntity")
+
+    @OneToMany(mappedBy = "infoEntity", cascade = CascadeType.ALL)
     private Collection<Phone> phoneList;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     private Address address;
+
+    public void addPhoneToInfoEntity(Phone pho)
+    {
+        if(phoneList == null)
+        {
+            phoneList = new ArrayList();
+            phoneList.add(pho);
+        }
+        else
+        {
+            phoneList.add(pho);
+        }            
+    }
 
     public InfoEntity()
     {
     }
 
-    public InfoEntity(String email, Collection<Phone> phoneList)
+    public InfoEntity(String email, Collection<Phone> phoneList, Address address)
     {
         this.email = email;
         this.phoneList = phoneList;
+        this.address = address;
+    }
+
+    public Collection<Phone> getPhoneList()
+    {
+        return phoneList;
+    }
+
+    public void setPhoneList(Collection<Phone> phoneList)
+    {
+        this.phoneList = phoneList;
+    }
+
+    public Address getAddress()
+    {
+        return address;
+    }
+
+    public void setAddress(Address address)
+    {
+        this.address = address;
     }
 
     public String getEmail()

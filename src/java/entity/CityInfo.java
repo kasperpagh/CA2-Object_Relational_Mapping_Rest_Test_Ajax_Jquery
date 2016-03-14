@@ -6,12 +6,16 @@
 package entity;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 
 /**
@@ -19,6 +23,10 @@ import javax.persistence.OneToMany;
  * @author pagh
  */
 @Entity
+@NamedQueries(
+{
+    @NamedQuery(name = "CityInfo.findAddressesByCity", query = "SELECT c FROM CityInfo c WHERE c.city = :city")
+})
 public class CityInfo implements Serializable
 {
 
@@ -29,10 +37,22 @@ public class CityInfo implements Serializable
     private int zipCode;
     private String city;
     
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     private Collection<Address> addressList;
     
 
+    public void addAddressToCityInfo(Address a)
+    {
+        if (addressList == null)
+        {
+            addressList = new ArrayList();
+            addressList.add(a);
+        }
+        else
+        {
+            addressList.add(a);
+        }
+    }
 
     public CityInfo()
     {
