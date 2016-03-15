@@ -46,6 +46,62 @@ public class Controller
         }
     }
 
+    public List<Person> getAllPersons()
+    {
+        EntityManager em = emf.createEntityManager();
+        try
+        {
+            Query query = em.createNamedQuery("Person.findAll", Person.class);
+            return query.getResultList();
+        }
+        finally
+        {
+            em.close();
+        }
+    }
+
+    public List<Company> getAllCompanies()
+    {
+        EntityManager em = emf.createEntityManager();
+        try
+        {
+            Query query = em.createNamedQuery("Company.findAll", Company.class);
+            return query.getResultList();
+        }
+        finally
+        {
+            em.close();
+        }
+    }
+
+    public List<InfoEntity> getAllInfoEntities()
+    {
+        EntityManager em = emf.createEntityManager();
+        try
+        {
+            Query query = em.createNamedQuery("InfoEntity.findAll", InfoEntity.class);
+            return query.getResultList();
+        }
+        finally
+        {
+            em.close();
+        }
+    }
+
+    public List<CityInfo> getAllCityInfos()
+    {
+        EntityManager em = emf.createEntityManager();
+        try
+        {
+            Query query = em.createNamedQuery("CityInfo.findAll", CityInfo.class);
+            return query.getResultList();
+        }
+        finally
+        {
+            em.close();
+        }
+    }
+
     public void createNewInfoEntity(InfoEntity ie)
     {
         EntityManager em = emf.createEntityManager();
@@ -60,7 +116,7 @@ public class Controller
             em.close();
         }
     }
-    
+
     public List<Hobby> getAllHobbies()
     {
         EntityManager em = emf.createEntityManager();
@@ -78,7 +134,7 @@ public class Controller
         {
             em.close();
         }
-        
+
     }
 
     public List<Company> getCompaniesWithMoreThanNEmployees(int n)
@@ -98,7 +154,7 @@ public class Controller
         {
             em.close();
         }
-    
+
     }
 
     //Find det objekt du ønsker at redigere, og pass det da til denne method!
