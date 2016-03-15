@@ -61,6 +61,8 @@ public class Controller
         }
     }
     
+    
+       
     public List<Hobby> getAllHobbies()
     {
         EntityManager em = emf.createEntityManager();
