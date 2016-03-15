@@ -102,24 +102,20 @@ public class TestFacade
     @Test
     public void facadeTest()
     {
-
         Controller c = new Controller();
 
         Person pers = (Person) c.getPersonByPhoneNumber(1);
         assertEquals(ie.getFirstName(), pers.getFirstName());
-        System.out.println("her er test af getPersonByPhoneNumber() " + c.getPersonByPhoneNumber(1));
 
         assertEquals(com.getEmail(), c.getCompanyByPhoneNumber(2).getEmail());
-        System.out.println("her er test af getCompanyByPhoneNumber()" + c.getCompanyByPhoneNumber(2));
 
         assertEquals(com.getEmail(), c.getCompanyByCvr("bubber").getEmail());
-        System.out.println("her er test af getCompanyByCvr()" + c.getCompanyByCvr("bubber"));
+
         assertEquals(h.getPersonList(), c.getAllHobbyPractitioners(h));
-        System.out.println("her er test af getAllHobbyPractitioners()" + c.getAllHobbyPractitioners(h));
+
         assertEquals(1, c.getCountOfHobbyPractitioners(h));
-        System.out.println("Her er test af getCountOfHobbyPractitioners: " + c.getCountOfHobbyPractitioners(h));
+
         assertEquals(ie.getEmail(), c.getPersonsByCity(ci).get(0).getEmail());
-        System.out.println("her er test af getPersonsByCity()" + c.getPersonsByCity(ci));
 
     }
 }
