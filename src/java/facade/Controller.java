@@ -46,6 +46,95 @@ public class Controller
         }
     }
 
+    public void createNewInfoEntity(InfoEntity ie)
+    {
+        EntityManager em = emf.createEntityManager();
+        try
+        {
+            em.getTransaction().begin();
+            em.persist(ie);
+            em.getTransaction().commit();
+        }
+        finally
+        {
+            em.close();
+        }
+    }
+    
+    public List<Hobby> getAllHobbies()
+    {
+        EntityManager em = emf.createEntityManager();
+        try
+        {
+            Query query = em.createNamedQuery("Hobby.findAll", Hobby.class);
+            List<Hobby> hobList = query.getResultList();
+            for (Hobby c : hobList)
+            {
+                hobList.remove(c);
+            }
+            return hobList;
+        }
+        finally
+        {
+            em.close();
+        }
+        
+    }
+
+    public List<Company> getCompaniesWithMoreThanNEmployees(int n)
+    {
+        EntityManager em = emf.createEntityManager();
+        try
+        {
+            Query query = em.createNamedQuery("Company.findAll", Company.class);
+            List<Company> comList = query.getResultList();
+            for (Company c : comList)
+            {
+                comList.remove(c);
+            }
+            return comList;
+        }
+        finally
+        {
+            em.close();
+        }
+    
+    }
+
+    //Find det objekt du ønsker at redigere, og pass det da til denne method!
+    public void editInfoEntity(InfoEntity ie)
+    {
+        EntityManager em = emf.createEntityManager();
+        try
+        {
+
+            em.getTransaction().begin();
+            InfoEntity ie2 = em.find(InfoEntity.class, ie.getId());
+            ie2 = ie;
+            em.persist(ie2);
+            em.getTransaction().commit();
+        }
+        finally
+        {
+            em.close();
+        }
+    }
+
+    public void deleteInfoEntity(InfoEntity ie)
+    {
+        EntityManager em = emf.createEntityManager();
+        try
+        {
+            em.getTransaction().begin();
+            em.remove(ie);
+            em.getTransaction().commit();
+        }
+        finally
+        {
+            em.close();
+        }
+    }
+
     public InfoEntity getCompanyByPhoneNumber(int number)
     {
         EntityManager em = emf.createEntityManager();
@@ -78,6 +167,26 @@ public class Controller
         }
     }
 
+    public List<Integer> getListOfAllZipCodes()
+    {
+        EntityManager em = emf.createEntityManager();
+        try
+        {
+            Query query = em.createNamedQuery("CityInfo.findAll", CityInfo.class);
+            List<CityInfo> cl = query.getResultList();
+            List<Integer> zipCodeList = new ArrayList();
+            for (CityInfo ci : cl)
+            {
+                zipCodeList.add(ci.getZipCode());
+            }
+            return zipCodeList;
+        }
+        finally
+        {
+            em.close();
+        }
+    }
+
     public List<Person> getAllHobbyPractitioners(Hobby h)
     {
         EntityManager em = emf.createEntityManager();
@@ -90,6 +199,11 @@ public class Controller
         {
             em.close();
         }
+    }
+
+    public int getCountOfHobbyPractitioners(Hobby h)
+    {
+        return getAllHobbyPractitioners(h).size();
     }
 
     public List<InfoEntity> getPersonsByCity(CityInfo ci)

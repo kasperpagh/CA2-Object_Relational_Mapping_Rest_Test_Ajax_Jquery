@@ -20,7 +20,8 @@ import javax.persistence.NamedQuery;
 @Entity
 @NamedQueries(
 {
-    @NamedQuery(name = "Company.findByCvr", query = "SELECT c FROM Company c WHERE c.cvr = :cvr")
+    @NamedQuery(name = "Company.findByCvr", query = "SELECT c FROM Company c WHERE c.cvr = :cvr"),
+    @NamedQuery(name = "Company.findAll", query = "SELECT c FROM Company c")
 })
 public class Company extends InfoEntity implements Serializable
 {

@@ -73,6 +73,8 @@ public class Tester
 
         System.out.println("her er test af getAllHobbyPractitioners()" + c.getAllHobbyPractitioners(h));
         
+        System.out.println("Her er test af getCountOfHobbyPractitioners: " + c.getCountOfHobbyPractitioners(h));
+        
         System.out.println("her er test af getPersonsByCity()" + c.getPersonsByCity(ci));
 
         em.close();
