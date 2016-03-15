@@ -28,11 +28,10 @@ import javax.ws.rs.core.MediaType;
  */
 @Path("person")
 public class personEndpoint {
-    
+
     Gson gson;
     Controller c = new Controller();
 
-    
     @Context
     private UriInfo context;
 
@@ -45,17 +44,37 @@ public class personEndpoint {
 
     /**
      * Retrieves representation of an instance of REST.ApiResource
+     *
      * @return an instance of java.lang.String
      */
-    
-    
     @GET
     @Path("/complete")
     @Produces(MediaType.APPLICATION_JSON)
     public String getAllPersons() {
-       return gson.toJson(c.getAllPersons());
+        return gson.toJson(c.getAllPersons());
+    }
+
+    @GET
+    @Path("/personbyphone/{number}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public String getPersonByPhone(@PathParam("number") Integer phone) {
+        return gson.toJson(c.getPersonByPhoneNumber(phone));
     }
     
+    @GET
+    @Path("/contactinfo")
+    @Produces(MediaType.APPLICATION_JSON)
+    public String getAllPersonsShowContactInfo() {
+        return gson.toJson(c.getAllPersonsContactInfo());
+    }
+    
+    @GET
+    @Path("/contactinfo/{id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public String getPersonContactInfo(@PathParam("id") Integer id) {
+        return gson.toJson(c.getPersonContactInfo(id));
+    }
+
     @GET
     @Path("/complete/{id}")
     @Produces(MediaType.APPLICATION_JSON)
@@ -63,17 +82,16 @@ public class personEndpoint {
        return c.getPersonById(id);
     }
     
-    
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     public void postJson(String personJson) {
         Person person = gson.fromJson(personJson, Person.class);
         c.createNewInfoEntity(person);
     }
-    
-    
+
     /**
      * PUT method for updating or creating an instance of ApiResource
+     *
      * @param content representation for the resource
      */
     @PUT

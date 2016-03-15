@@ -53,6 +53,7 @@ public class Controller
         {
             Query query = em.createNamedQuery("Person.findAll", Person.class);
             return query.getResultList();
+            
         }
         finally
         {
