@@ -16,6 +16,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 
 /**
@@ -23,6 +25,10 @@ import javax.persistence.OneToMany;
  * @author pagh
  */
 @Entity
+@NamedQueries(
+{
+    @NamedQuery(name = "Person.findAll", query = "SELECT p FROM Person p")
+})
 public class Person extends InfoEntity implements Serializable
 {
 
