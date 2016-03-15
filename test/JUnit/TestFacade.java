@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package JUnit;
 
 import deploy.DeploymentConfiguration;
@@ -27,10 +22,9 @@ import static org.junit.Assert.*;
 
 /**
  *
- * @author kaspe
+ * @author kaspe Databasen skal være tom når man kører testen
  */
-public class TestFacade
-{
+public class TestFacade {
 
     EntityManager em;
     Person ie;
@@ -41,23 +35,19 @@ public class TestFacade
     Address a;
     InfoEntity com;
 
-    public TestFacade()
-    {
+    public TestFacade() {
     }
 
     @BeforeClass
-    public static void setUpClass()
-    {
+    public static void setUpClass() {
     }
 
     @AfterClass
-    public static void tearDownClass()
-    {
+    public static void tearDownClass() {
     }
 
     @Before
-    public void setUp()
-    {
+    public void setUp() {
 
         Persistence.generateSchema("CA2-Object_Relational_Mapping_Rest_Test_Ajax_JqueryPU", null);
         EntityManagerFactory emf = Persistence.createEntityManagerFactory(DeploymentConfiguration.PU_NAME);
@@ -95,28 +85,21 @@ public class TestFacade
     }
 
     @After
-    public void tearDown()
-    {
+    public void tearDown() {
 
     }
 
     @Test
-    public void facadeTest()
-    {
+    public void facadeTest() {
         Controller c = new Controller();
 
         Person pers = (Person) c.getPersonByPhoneNumber(1);
+        int id = pers.getId();
         assertEquals(ie.getFirstName(), pers.getFirstName());
-
-//        assertEquals(com.getEmail(), c.getCompanyByPhoneNumber(2).getEmail());
-//
-//        assertEquals(com.getEmail(), c.getCompanyByCvr("bubber").getEmail());
-//
-//        assertEquals(h.getPersonList(), c.getAllHobbyPractitioners(h));
-//
-//        assertEquals(1, c.getCountOfHobbyPractitioners(h));
-//
-//        assertEquals(ie.getEmail(), c.getPersonsByCity(ci).get(0).getEmail());
-
+        pers = c.getPersonById(id);
+        assertEquals(pers.getFirstName(), ie.getFirstName());
+        assertTrue(c.getPersonById(id) != null);
+        c.deletePerson(pers);
+        assertTrue(c.getPersonById(id) == null);
     }
 }
