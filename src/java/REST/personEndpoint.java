@@ -176,7 +176,7 @@ public class personEndpoint
     public String editPerson(@PathParam("id") Integer id, String personJson) 
     {        
         
-        JsonObject jsonOut = new JsonObject();
+        
         String jSonString = "";
             
         Person personToEdit = null;
@@ -201,7 +201,7 @@ public class personEndpoint
             personToEdit = c.editPerson(personIn);
             
          
-            
+            JsonObject jsonOut = new JsonObject();
             jsonOut.addProperty("id", personToEdit.getId());
             jsonOut.addProperty("firstname", personToEdit.getFirstName());
             jsonOut.addProperty("lastname", personToEdit.getLastName());

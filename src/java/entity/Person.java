@@ -40,7 +40,7 @@ public class Person extends InfoEntity implements Serializable
     private String lastName;
 
     @ManyToMany(cascade = CascadeType.ALL)
-    private Collection<Hobby> hobbyList;
+    private List<Hobby> hobbyList;
 
     public void addHobbyToPerson(Hobby h)
     {
@@ -58,7 +58,7 @@ public class Person extends InfoEntity implements Serializable
     {
     }
 
-    public Person(Integer id, String firstName, String lastName, Collection<Hobby> hobbyList)
+    public Person(Integer id, String firstName, String lastName, List<Hobby> hobbyList)
     {
         this.id = id;
         this.firstName = firstName;
@@ -79,7 +79,7 @@ public class Person extends InfoEntity implements Serializable
         this.lastName = lastName;
     }
 
-    public Collection<Hobby> getHobbyList()
+    public List<Hobby> getHobbyList()
     {
         return hobbyList;
     }
