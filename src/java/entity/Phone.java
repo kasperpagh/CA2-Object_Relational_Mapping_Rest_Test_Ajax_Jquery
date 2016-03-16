@@ -41,12 +41,12 @@ public class Phone implements Serializable
     {
     }
 
-    public Phone(int number, String description, InfoEntity infoEntity, Person person)
+    public Phone(int number, String description, InfoEntity infoEntity)
     {
         this.number = number;
         this.description = description;
         this.infoEntity = infoEntity;
-        this.person = person;
+
     }
     
     public Integer getId()
@@ -87,16 +87,16 @@ public class Phone implements Serializable
         this.infoEntity = infoEntity;
     }
 
-    public Person getPerson()
-    {
-        return person;
-    }
-
-    public void setPerson(Person person)
-    {
-
-        this.person = person;
-    }
+//    public Person getPerson()
+//    {
+//        return person;
+//    }
+//
+//    public void setPerson(Person person)
+//    {
+//
+//        this.person = person;
+//    }
 
   
 

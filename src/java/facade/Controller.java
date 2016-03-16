@@ -43,8 +43,9 @@ public class Controller
             Query query = em.createNamedQuery("Phone.findByNumber", Phone.class);
             int no = query.getFirstResult();
             Phone p = (Phone) query.setParameter("number", number).getResultList().get(no);
+            Person per = (Person) p.getInfoEntity();
 
-            return p.getPerson();
+            return per;
         }
         finally
 
