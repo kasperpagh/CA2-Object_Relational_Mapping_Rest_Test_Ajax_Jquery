@@ -199,6 +199,28 @@ public class Controller
             em.close();
         }
     }
+    
+    //Find det objekt du ønsker at redigere, og pass det da til denne method!
+    public Person editPerson(Person p)
+    {
+
+        EntityManager em = emf.createEntityManager();
+        Person p2 = em.find(Person.class, p.getId());
+        try
+        {
+
+            em.getTransaction().begin();
+            p2 = p;
+            em.persist(p2);
+            em.getTransaction().commit();
+            
+        }
+        finally
+        {
+            em.close();
+        }
+        return p2;
+    }
 
     public void deleteInfoEntity(InfoEntity ie)
     {
