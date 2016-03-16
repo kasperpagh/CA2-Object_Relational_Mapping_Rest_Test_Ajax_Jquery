@@ -68,27 +68,24 @@ public class personEndpoint
     @GET
     @Path("/contactinfo")
     @Produces(MediaType.APPLICATION_JSON)
-    public String getAllPersonsShowContactInfo()
-    {
-        
+    public String getAllPersonsShowContactInfo(){
         return gson.toJson(c.getAllPersonsContactInfo());
     }
 
-//    @GET
-//    @Path("/contactinfo/{id}")
-//    @Produces(MediaType.APPLICATION_JSON)
-//    public String getPersonContactInfo(@PathParam("id") Integer id)
-//    {
-//        return gson.toJson(c.getPersonContactInfo(id));
-//    }
+    @GET
+    @Path("/contactinfo/{id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public String getPersonContactInfo(@PathParam("id") Integer id){
+        return gson.toJson(c.getPersonContactInfo(id));
+    }
 
-//    @GET
-//    @Path("/complete/{id}")
-//    @Produces(MediaType.APPLICATION_JSON)
-//    public String getPersonById(@PathParam("id") Integer id)
-//    {
-//        return c.getPersonById(id);
-//    }
+    @GET
+    @Path("/complete/{id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public String getPersonById(@PathParam("id") Integer id)
+    {
+        return c.getPersonById(id);
+    }
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)

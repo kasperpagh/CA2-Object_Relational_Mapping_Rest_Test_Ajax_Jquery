@@ -35,28 +35,28 @@ public class Phone implements Serializable
     private String description;
     @ManyToOne(cascade = CascadeType.ALL)
     private InfoEntity infoEntity;
+    private Person person;
 
     public Phone()
     {
     }
 
-    public Phone(int number, String description, InfoEntity infoEntity)
+    public Phone(int number, String description, InfoEntity infoEntity, Person person)
     {
         this.number = number;
         this.description = description;
         this.infoEntity = infoEntity;
+        this.person = person;
     }
 
-  
-
-    public InfoEntity getInfoEntity()
+    public Integer getId()
     {
-        return infoEntity;
+        return id;
     }
 
-    public void setInfoEntity(InfoEntity infoEntity)
+    public void setId(Integer id)
     {
-        this.infoEntity = infoEntity;
+        this.id = id;
     }
 
     public int getNumber()
@@ -78,5 +78,29 @@ public class Phone implements Serializable
     {
         this.description = description;
     }
+
+    public InfoEntity getInfoEntity()
+    {
+        return infoEntity;
+    }
+
+    public void setInfoEntity(InfoEntity infoEntity)
+    {
+        this.infoEntity = infoEntity;
+    }
+
+    public Person getPerson()
+    {
+        return person;
+    }
+
+    public void setPerson(Person person)
+    {
+        this.person = person;
+    }
+
+  
+
+    
 
 }
