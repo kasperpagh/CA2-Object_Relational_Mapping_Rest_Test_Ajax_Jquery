@@ -47,14 +47,16 @@ public class Phone implements Serializable
         this.description = description;
         this.infoEntity = infoEntity;
         this.person = person;
-        
     }
-
-    public Integer getId() {
+    
+    public Integer getId()
+    {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Integer id)
+    {
+
         this.id = id;
     }
 
@@ -74,19 +76,25 @@ public class Phone implements Serializable
         this.description = description;
     }
 
-    public InfoEntity getInfoEntity() {
+
+    public InfoEntity getInfoEntity()
+    {
         return infoEntity;
     }
 
-    public void setInfoEntity(InfoEntity infoEntity) {
+    public void setInfoEntity(InfoEntity infoEntity)
+    {
         this.infoEntity = infoEntity;
     }
 
-    public Person getPerson() {
+    public Person getPerson()
+    {
         return person;
     }
 
-    public void setPerson(Person person) {
+    public void setPerson(Person person)
+    {
+
         this.person = person;
     }
 

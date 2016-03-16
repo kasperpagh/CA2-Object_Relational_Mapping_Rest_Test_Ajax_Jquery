@@ -31,7 +31,8 @@ import javax.ws.rs.core.MediaType;
  * @author Steffen
  */
 @Path("person")
-public class personEndpoint {
+public class personEndpoint
+{
 
     Gson gson;
     Controller c = new Controller();
@@ -42,7 +43,8 @@ public class personEndpoint {
     /**
      * Creates a new instance of ApiResource
      */
-    public personEndpoint() {
+    public personEndpoint()
+    {
         gson = new GsonBuilder().setPrettyPrinting().create();
     }
 
@@ -54,6 +56,7 @@ public class personEndpoint {
     @GET
     @Path("/complete")
     @Produces(MediaType.APPLICATION_JSON)
+
     public String getAllPersons() {
    
         List<Person> receivedList = c.getAllPersons();
@@ -75,6 +78,7 @@ public class personEndpoint {
         }
 
         return gson.toJson(jA);
+
     }
         
 
@@ -82,6 +86,7 @@ public class personEndpoint {
     @GET
     @Path("/personbyphone/{number}")
     @Produces(MediaType.APPLICATION_JSON)
+
     public String getPersonByPhone(@PathParam("number") Integer phone) {
         
             JsonObject jO = new JsonObject();
@@ -100,32 +105,35 @@ public class personEndpoint {
 
         return gson.toJson(jO);
     
+
     }
-    
+
     @GET
     @Path("/contactinfo")
     @Produces(MediaType.APPLICATION_JSON)
-    public String getAllPersonsShowContactInfo() {
+    public String getAllPersonsShowContactInfo(){
         return gson.toJson(c.getAllPersonsContactInfo());
     }
-    
+
     @GET
     @Path("/contactinfo/{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    public String getPersonContactInfo(@PathParam("id") Integer id) {
+    public String getPersonContactInfo(@PathParam("id") Integer id){
         return gson.toJson(c.getPersonContactInfo(id));
     }
 
     @GET
     @Path("/complete/{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    public String getPersonById(@PathParam("id") Integer id) {
-       return c.getPersonById(id);
+    public String getPersonById(@PathParam("id") Integer id)
+    {
+        return c.getPersonById(id);
     }
-    
+
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
-    public void postJson(String personJson) {
+    public void postJson(String personJson)
+    {
         Person person = gson.fromJson(personJson, Person.class);
         c.createNewInfoEntity(person);
     }
@@ -137,6 +145,7 @@ public class personEndpoint {
      */
     @PUT
     @Consumes(MediaType.APPLICATION_XML)
-    public void put(String content) {
+    public void put(String content)
+    {
     }
 }
