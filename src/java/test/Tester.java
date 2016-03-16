@@ -298,7 +298,7 @@ public class Tester
             ///// person 1 
             Person ie = new Person(firstnames.get(rand.nextInt(firstnames.size())), lastnames.get(rand.nextInt(lastnames.size())), null);
             InfoEntity com = new Company(companynames.get(rand.nextInt(companynames.size())), companydesc.get(rand.nextInt(companydesc.size())), cvr.get(rand.nextInt(cvr.size())).toString(), numEmployees.get(rand.nextInt(numEmployees.size())), marketvalue.get(rand.nextInt(marketvalue.size())));
- 
+
             Phone p = new Phone(numbers.get(rand.nextInt(numbers.size())), PhoneDesc.get(rand.nextInt(PhoneDesc.size())), com, ie);
             ie.addPhoneToInfoEntity(p);
 
@@ -318,6 +318,9 @@ public class Tester
             em.persist(ie);
             em.getTransaction().commit();
             // new Company(name, description, cvr, i, i)
+
+            //InfoEntity com = new Company(companynames.get(rand.nextInt(companynames.size())), companydesc.get(rand.nextInt(companydesc.size())), cvr.get(rand.nextInt(cvr.size())).toString(), numEmployees.get(rand.nextInt(numEmployees.size())), marketvalue.get(rand.nextInt(marketvalue.size())));
+
             Phone p1 = new Phone(numbers.get(rand.nextInt(numbers.size())), PhoneDesc.get(rand.nextInt(PhoneDesc.size())), com, ie);
             com.addPhoneToInfoEntity(p1);
 

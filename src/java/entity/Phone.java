@@ -48,7 +48,7 @@ public class Phone implements Serializable
         this.infoEntity = infoEntity;
         this.person = person;
     }
-
+    
     public Integer getId()
     {
         return id;
@@ -56,28 +56,26 @@ public class Phone implements Serializable
 
     public void setId(Integer id)
     {
+
         this.id = id;
     }
 
-    public int getNumber()
-    {
+    public int getNumber() {
         return number;
     }
 
-    public void setNumber(int number)
-    {
+    public void setNumber(int number) {
         this.number = number;
     }
 
-    public String getDescription()
-    {
+    public String getDescription() {
         return description;
     }
 
-    public void setDescription(String description)
-    {
+    public void setDescription(String description) {
         this.description = description;
     }
+
 
     public InfoEntity getInfoEntity()
     {
@@ -96,6 +94,7 @@ public class Phone implements Serializable
 
     public void setPerson(Person person)
     {
+
         this.person = person;
     }
 

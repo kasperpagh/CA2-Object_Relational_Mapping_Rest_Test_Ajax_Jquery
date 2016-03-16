@@ -45,7 +45,9 @@ public class Controller
             Phone p = (Phone) query.setParameter("number", number).getResultList().get(no);
 
             return p.getPerson();
-        } finally
+        }
+        finally
+
         {
             em.close();
         }

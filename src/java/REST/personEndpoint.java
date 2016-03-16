@@ -7,8 +7,12 @@ package REST;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+import entity.Hobby;
 import entity.Person;
 import facade.Controller;
+import java.util.List;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
 import javax.ws.rs.Produces;
@@ -52,17 +56,56 @@ public class personEndpoint
     @GET
     @Path("/complete")
     @Produces(MediaType.APPLICATION_JSON)
-    public String getAllPersons()
-    {
-        return gson.toJson(c.getAllPersons());
+
+    public String getAllPersons() {
+   
+        List<Person> receivedList = c.getAllPersons();
+        JsonArray jA = new JsonArray();
+        for (Person per : receivedList)
+        {
+            JsonObject jO = new JsonObject();
+            jO.addProperty("firstName", per.getFirstName());
+            jO.addProperty("lastName", per.getLastName());
+            JsonArray jaHobby = new JsonArray();
+            for (Hobby h : per.getHobbyList())
+            {
+                JsonObject jo2 = new JsonObject();
+                jo2.addProperty("HobbyName", h.getName());
+                jaHobby.add(jo2);
+            }
+            jO.add("HobbyList", jaHobby);
+            jA.add(jO);
+        }
+
+        return gson.toJson(jA);
+
     }
+        
+
 
     @GET
     @Path("/personbyphone/{number}")
     @Produces(MediaType.APPLICATION_JSON)
-    public String getPersonByPhone(@PathParam("number") Integer phone)
-    {
-        return gson.toJson(c.getPersonByPhoneNumber(phone));
+
+    public String getPersonByPhone(@PathParam("number") Integer phone) {
+        
+            JsonObject jO = new JsonObject();
+            jO.addProperty("firstName", c.getPersonByPhoneNumber(phone).getFirstName());
+            jO.addProperty("lastName", c.getPersonByPhoneNumber(phone).getLastName());
+            JsonArray jaHobby = new JsonArray();
+            for (Hobby h : c.getPersonByPhoneNumber(phone).getHobbyList())
+            {
+                JsonObject jO2 = new JsonObject();
+                jO2.addProperty("HobbyName", h.getName());
+                jaHobby.add(jO2);
+            }
+            jO.add("HobbyList", jaHobby);
+            
+        
+
+        return gson.toJson(jO);
+    
+
     }
 
     @GET
