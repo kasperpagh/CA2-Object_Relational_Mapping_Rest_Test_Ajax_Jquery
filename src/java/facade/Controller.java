@@ -5,6 +5,11 @@
  */
 package facade;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 import entity.Address;
 import entity.CityInfo;
 import entity.Company;
@@ -36,11 +41,11 @@ public class Controller
         try
         {
             Query query = em.createNamedQuery("Phone.findByNumber", Phone.class);
+            int no = query.getFirstResult();
+            Phone p = (Phone) query.setParameter("number", number).getResultList().get(no);
 
-            Phone p = (Phone) query.setParameter("number", number).getSingleResult();
             return p.getInfoEntity();
-        }
-        finally
+        } finally
         {
             em.close();
         }
@@ -53,9 +58,8 @@ public class Controller
         {
             Query query = em.createNamedQuery("Person.findAll", Person.class);
             return query.getResultList();
-            
-        }
-        finally
+
+        } finally
         {
             em.close();
         }
@@ -68,8 +72,7 @@ public class Controller
         {
             Query query = em.createNamedQuery("Company.findAll", Company.class);
             return query.getResultList();
-        }
-        finally
+        } finally
         {
             em.close();
         }
@@ -82,8 +85,7 @@ public class Controller
         {
             Query query = em.createNamedQuery("InfoEntity.findAll", InfoEntity.class);
             return query.getResultList();
-        }
-        finally
+        } finally
         {
             em.close();
         }
@@ -96,8 +98,7 @@ public class Controller
         {
             Query query = em.createNamedQuery("CityInfo.findAll", CityInfo.class);
             return query.getResultList();
-        }
-        finally
+        } finally
         {
             em.close();
         }
@@ -111,8 +112,7 @@ public class Controller
             em.getTransaction().begin();
             em.persist(ie);
             em.getTransaction().commit();
-        }
-        finally
+        } finally
         {
             em.close();
         }
@@ -130,8 +130,7 @@ public class Controller
                 hobList.remove(c);
             }
             return hobList;
-        }
-        finally
+        } finally
         {
             em.close();
         }
@@ -150,8 +149,7 @@ public class Controller
                 comList.remove(c);
             }
             return comList;
-        }
-        finally
+        } finally
         {
             em.close();
         }
@@ -170,8 +168,7 @@ public class Controller
             ie2 = ie;
             em.persist(ie2);
             em.getTransaction().commit();
-        }
-        finally
+        } finally
         {
             em.close();
         }
@@ -185,8 +182,7 @@ public class Controller
             em.getTransaction().begin();
             em.remove(ie);
             em.getTransaction().commit();
-        }
-        finally
+        } finally
         {
             em.close();
         }
@@ -201,8 +197,7 @@ public class Controller
 
             Phone p = (Phone) query.setParameter("number", number).getSingleResult();
             return p.getInfoEntity();
-        }
-        finally
+        } finally
         {
             em.close();
         }
@@ -217,8 +212,7 @@ public class Controller
 
             Company com = (Company) query.setParameter("cvr", cvr).getSingleResult();
             return com;
-        }
-        finally
+        } finally
         {
             em.close();
         }
@@ -237,8 +231,7 @@ public class Controller
                 zipCodeList.add(ci.getZipCode());
             }
             return zipCodeList;
-        }
-        finally
+        } finally
         {
             em.close();
         }
@@ -251,8 +244,7 @@ public class Controller
         {
             return new ArrayList(h.getPersonList());
 
-        }
-        finally
+        } finally
         {
             em.close();
         }
@@ -283,11 +275,43 @@ public class Controller
                 }
             }
             return persList;
-        }
-        finally
+        } finally
         {
             em.close();
         }
+    }
+
+    //Giver et json element du bare kan parse med gson.toJson(getAllPersonsContactInfo())
+    public JsonElement getAllPersonsContactInfo()
+    {
+        Gson gson;
+        gson = new GsonBuilder().setPrettyPrinting().create();
+        List<Person> persList = getAllPersons();
+        JsonArray outerArray = new JsonArray();
+        JsonArray innerContactArray;
+
+        for (Person person : persList)
+        {
+            JsonObject jo = new JsonObject();
+            jo.addProperty("firstName", person.getFirstName());
+            jo.addProperty("lastName", person.getLastName());
+            jo.addProperty("email", person.getEmail());
+            innerContactArray = new JsonArray();
+            List<Phone> phoneList = new ArrayList(person.getPhoneList());
+            for (Phone phone : phoneList)
+            {
+                JsonObject joPho = new JsonObject();
+                joPho.addProperty("number", phone.getNumber());
+                joPho.addProperty("description", phone.getDescription());
+                innerContactArray.add(joPho);
+            }
+            JsonObject joAdd = new JsonObject();
+            
+//            joAdd.addProperty("address", person.getAddress().toString());
+            jo.add("phoneList", innerContactArray);
+            outerArray.add(jo);
+        }
+        return outerArray;
     }
 
 }
