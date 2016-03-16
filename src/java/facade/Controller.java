@@ -18,6 +18,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 
 /**
  *
@@ -51,8 +52,9 @@ public class Controller
         EntityManager em = emf.createEntityManager();
         try
         {
-            Query query = em.createNamedQuery("Person.findAll", Person.class);
-            return query.getResultList();
+            TypedQuery<Person> query = em.createQuery("SELECT c FROM Person c", Person.class);
+            List<Person> s = query.getResultList();
+            return s;
             
         }
         finally
@@ -66,7 +68,7 @@ public class Controller
         EntityManager em = emf.createEntityManager();
         try
         {
-            Query query = em.createNamedQuery("Company.findAll", Company.class);
+            Query query = em.createQuery("SELECT c FROM Company c");
             return query.getResultList();
         }
         finally

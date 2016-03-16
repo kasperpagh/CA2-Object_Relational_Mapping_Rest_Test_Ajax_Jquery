@@ -7,8 +7,14 @@ package REST;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+import com.google.gson.stream.JsonReader;
+import entity.Hobby;
 import entity.Person;
 import facade.Controller;
+import java.sql.ResultSet;
+import java.util.List;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
 import javax.ws.rs.Produces;
@@ -20,6 +26,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PUT;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.core.MediaType;
+import test.Tester;
 
 /**
  * REST Web Service
@@ -51,7 +58,34 @@ public class personEndpoint {
     @Path("/complete")
     @Produces(MediaType.APPLICATION_JSON)
     public String getAllPersons() {
-        return gson.toJson(c.getAllPersons());
+        
+        Tester t = new Tester();
+        t.CreateUsers();
+
+        
+
+        
+        List<Person> john = c.getAllPersons();
+        JsonArray ja = new JsonArray();
+
+        
+        for (Person per : john)
+        {
+            JsonObject jo = new JsonObject();
+            jo.addProperty("firstName", per.getFirstName());
+            jo.addProperty("lastName", per.getLastName());
+            JsonArray jaHobby = new JsonArray();
+            for (Hobby h : per.getHobbyList())
+            {
+                JsonObject jo2 = new JsonObject();
+                jo2.addProperty("HobbyName", h.getName());
+                jaHobby.add(jo2);
+            }
+            jo.add("HobbyList", jaHobby);
+            ja.add(jo);
+        }
+
+        return gson.toJson(ja);
     }
 
     @GET

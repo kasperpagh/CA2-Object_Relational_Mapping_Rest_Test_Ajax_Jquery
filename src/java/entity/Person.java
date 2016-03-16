@@ -35,7 +35,7 @@ public class Person extends InfoEntity implements Serializable
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private  Integer id;
     private String firstName;
     private String lastName;
 
@@ -96,12 +96,21 @@ public class Person extends InfoEntity implements Serializable
         this.lastName = lastName;
     }
 
-    
+    /**
+     *
+     * @return
+     */
+    @Override
     public Integer getId()
     {
         return id;
     }
 
+    /**
+     *
+     * @param id
+     */
+    @Override
     public void setId(Integer id)
     {
         this.id = id;
