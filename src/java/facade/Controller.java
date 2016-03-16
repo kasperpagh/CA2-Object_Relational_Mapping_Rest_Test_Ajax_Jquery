@@ -30,7 +30,7 @@ public class Controller
 //    EntityManager em = emf.createEntityManager();
 
     //This one is twerking!
-    public InfoEntity getPersonByPhoneNumber(int number)
+    public Person getPersonByPhoneNumber(int number)
     {
         EntityManager em = emf.createEntityManager();
         try
@@ -38,7 +38,7 @@ public class Controller
             Query query = em.createNamedQuery("Phone.findByNumber", Phone.class);
 
             Phone p = (Phone) query.setParameter("number", number).getSingleResult();
-            return p.getInfoEntity();
+            return p.getPerson();
         }
         finally
         {

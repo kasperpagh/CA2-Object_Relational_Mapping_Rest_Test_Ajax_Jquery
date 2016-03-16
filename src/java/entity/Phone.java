@@ -35,48 +35,63 @@ public class Phone implements Serializable
     private String description;
     @ManyToOne(cascade = CascadeType.ALL)
     private InfoEntity infoEntity;
+    private Person person;
 
     public Phone()
     {
     }
 
-    public Phone(int number, String description, InfoEntity infoEntity)
+    public Phone(int number, String description, InfoEntity infoEntity, Person person)
     {
         this.number = number;
         this.description = description;
         this.infoEntity = infoEntity;
+        this.person = person;
+        
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public int getNumber() {
+        return number;
+    }
+
+    public void setNumber(int number) {
+        this.number = number;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public InfoEntity getInfoEntity() {
+        return infoEntity;
+    }
+
+    public void setInfoEntity(InfoEntity infoEntity) {
+        this.infoEntity = infoEntity;
+    }
+
+    public Person getPerson() {
+        return person;
+    }
+
+    public void setPerson(Person person) {
+        this.person = person;
     }
 
   
 
-    public InfoEntity getInfoEntity()
-    {
-        return infoEntity;
-    }
-
-    public void setInfoEntity(InfoEntity infoEntity)
-    {
-        this.infoEntity = infoEntity;
-    }
-
-    public int getNumber()
-    {
-        return number;
-    }
-
-    public void setNumber(int number)
-    {
-        this.number = number;
-    }
-
-    public String getDescription()
-    {
-        return description;
-    }
-
-    public void setDescription(String description)
-    {
-        this.description = description;
-    }
+    
 
 }
