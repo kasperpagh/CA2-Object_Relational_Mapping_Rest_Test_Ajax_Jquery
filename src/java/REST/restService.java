@@ -236,7 +236,7 @@ public class restService
     @Consumes(MediaType.APPLICATION_JSON)
     public void deletePerson(@PathParam("id") Integer id) throws PersonNotFoundException
     {
-        if(c.getPersonById(id) == null)
+        if (c.getPersonById(id) == null)
         {
             throw new PersonNotFoundException("No person with the given id exsists!");
         }
