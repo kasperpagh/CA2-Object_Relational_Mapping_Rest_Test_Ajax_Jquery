@@ -3,6 +3,7 @@
   <persistence-unit name="CA2-Object_Relational_Mapping_Rest_Test_Ajax_JqueryPU" transaction-type="RESOURCE_LOCAL">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
+    <validation-mode>NONE</validation-mode>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/ca_rest?zeroDateTimeBehavior=convertToNull"/>
       <property name="javax.persistence.jdbc.user" value="root"/>
@@ -11,5 +12,4 @@
       <property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>
     </properties>
   </persistence-unit>
-  
 </persistence>

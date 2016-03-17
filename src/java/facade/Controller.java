@@ -187,6 +187,18 @@ public class Controller {
             em.close();
         }
     }
+    
+    public void deletePerson(Person ie) {
+        EntityManager em = emf.createEntityManager();
+        try {
+            em.getTransaction().begin();
+            Person p = em.find(Person.class, ie.getId());
+            em.remove(p);
+            em.getTransaction().commit();
+        } finally {
+            em.close();
+        }
+    }
 
     public InfoEntity getCompanyByPhoneNumber(int number) {
         EntityManager em = emf.createEntityManager();

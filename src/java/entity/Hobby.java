@@ -65,10 +65,9 @@ public class Hobby implements Serializable
         this.personList = personList;
     }
     
-    public Hobby(String name, String description)
+    public Hobby(String name)
     {
         this.name = name;
-        this.description = description;
     }
 
     public Collection<Person> getPersonList()
