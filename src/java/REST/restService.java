@@ -38,7 +38,7 @@ import javax.ws.rs.core.MediaType;
  * @author Steffen
  */
 @Path("person")
-public class personEndpoint {
+public class restService {
 
     Gson gson;
     Controller c = new Controller();
@@ -49,7 +49,7 @@ public class personEndpoint {
     /**
      * Creates a new instance of ApiResource
      */
-    public personEndpoint() {
+    public restService() {
         gson = new GsonBuilder().setPrettyPrinting().create();
     }
 
@@ -147,8 +147,6 @@ public class personEndpoint {
 
             String firstname = jsonIn.get("firstName").getAsString();
             String lastname = jsonIn.get("lastName").getAsString();
-
-
 
 
             JsonArray personHobbies = jsonIn.get("HobbyList").getAsJsonArray();
