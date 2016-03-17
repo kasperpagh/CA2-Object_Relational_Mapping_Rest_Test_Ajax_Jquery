@@ -39,6 +39,8 @@ public class Hobby implements Serializable
     @ManyToMany(mappedBy = "hobbyList", cascade = CascadeType.ALL)
     private Collection<Person> personList;
 
+ 
+
     public void addHobbyToPerson(Person p)
     {
         if (personList == null)
@@ -61,6 +63,11 @@ public class Hobby implements Serializable
         this.name = name;
         this.description = description;
         this.personList = personList;
+    }
+    
+    public Hobby(String name)
+    {
+        this.name = name;
     }
 
     public Collection<Person> getPersonList()

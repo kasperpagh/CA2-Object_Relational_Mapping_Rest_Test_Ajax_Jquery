@@ -18,6 +18,8 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -26,6 +28,10 @@ import javax.persistence.Table;
  * @author pagh
  */
 @Entity
+@NamedQueries(
+{
+    @NamedQuery(name = "InfoEntity.findAll", query = "SELECT i FROM InfoEntity i")
+})
 @Inheritance(strategy = InheritanceType.JOINED)
 
 @Table(name = "InfoEntity")
@@ -35,7 +41,7 @@ public class InfoEntity implements Serializable
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    protected Integer id;
     private String email;
 
     @OneToMany(mappedBy = "infoEntity", cascade = CascadeType.ALL)
