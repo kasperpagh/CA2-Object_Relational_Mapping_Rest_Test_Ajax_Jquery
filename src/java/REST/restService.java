@@ -68,6 +68,7 @@ public class restService {
         JsonArray jA = new JsonArray();
         for (Person per : receivedList) {
             JsonObject jO = new JsonObject();
+            jO.addProperty("id", per.getId());
             jO.addProperty("firstName", per.getFirstName());
             jO.addProperty("lastName", per.getLastName());
             JsonArray jaHobby = new JsonArray();

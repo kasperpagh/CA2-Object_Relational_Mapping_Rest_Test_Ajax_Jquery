@@ -686,7 +686,7 @@ $.getJSON( "api/person/contactinfo", function( data ) {
 $('#getallpers').click(function(){    hideAll(); $('#getallpersons').show(); $('#subheader').html("All persons");
 $.getJSON( "api/person/complete", function( data ) {
   $('#getallpersonstable tr').remove();
-  $('#getallpersonstable').append("<tr><td><h3> Full name </h3></td>  <td><h3> Hobbies </h3></td> </tr>");
+  $('#getallpersonstable').append("<tr><td><h3> ID </h3></td> <td><h3> Full name </h3></td>  <td><h3> Hobbies </h3></td> </tr>");
   $.each( data, function( key, val ) {
     var hobbystring = "";
     for (i = 0; i <= val.HobbyList.length - 1; i++) {
@@ -700,7 +700,7 @@ $.getJSON( "api/person/complete", function( data ) {
       }
 
     };
-    $('<tr><td>' + val.firstName + " " + val.lastName + '</td>' + '<td>' + hobbystring + '</td>' + '</tr>').appendTo($("#getallpersonstable"));
+    $('<tr><td>' + val.id + '</td>' + '<td>' + val.firstName + " " + val.lastName + '</td>' + '<td>' + hobbystring + '</td>' + '</tr>').appendTo($("#getallpersonstable"));
   }); 
 });
 }); // gets json from the api api/person/complete and processes it to show.
