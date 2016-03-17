@@ -455,9 +455,9 @@
 
                       <h3>Select how you would search.</h3>
                       <select id="searchbyul" class="form-control" style="width: auto;">
-  <option value="api/complete/">Search persons using ID</option>
-  <option value="api/contactinfo/">Search contactinfo using ID</option>
-  <option value="api/personbyphone/">Search persons using phonenumber</option>
+  <option value="api/person/complete/">Search persons using ID</option>
+  <option value="api/person/contactinfo/">Search contactinfo using ID</option>
+  <option value="api/person/personbyphone/">Search persons using phonenumber</option>
 </select>
   </div>       
                         <br>
@@ -523,12 +523,14 @@
                     <b>{
                         "firstName": "Peter",
                         "lastName": "Lefort",
-                        "phoneList": 
+                        "hobbyList": 
                         [
-                        {
-                        "number": 88996521,
-                        "description": "Home Number"
-                        }
+      {
+      "HobbyName": "Soccer"
+    },
+    {
+      "HobbyName": "Ice skating"
+    }
                         ]
                         }</b>. Or it may simply be created with only name like this:<b> {
                         "firstName": "Peter",
@@ -609,26 +611,58 @@ $('#howapiworks').click(function(){  hideAll(); $('#apiworks').show();  $('#subh
 
 
 $('#searchlink').click(function(){    hideAll(); $('#search').show();  $('#subheader').html("Search"); });
+
 $('#searchbtn').click(function(){    hideAll(); $('#results').show(); $('#resultstable').show(); 
     $('#resultstable tr').remove(); // to clear the results so we dont get duplicates.
     $('#subheader').html("Search results");
     var whattosearchfor = $( "#searchbyul" ).val();
     var searchcrit = $('#searchtextarea').val();
- //   alert(whattosearchfor + searchcrit);
-    $.getJSON( whattosearchfor + searchcrit, function( data ) {
-        
-  $.each( data, function( key, val ) {
    
+    var jsonpath = whattosearchfor + searchcrit;
+    
+ 
 
-    $('<tr><td>' + val.firstName + " " + val.lastName + '</td>').appendTo($("#resultstable"));
-  });
-}); // gets json from the api api/person/contactinfo and processes it to show.
+    $.getJSON( jsonpath, function( data ) {
+            if(whattosearchfor === "api/person/contactinfo/")
+    {
         
-
+        $('#resultstable').append("<tr><td><h3> Full Name </h3></td>  <td><h3> Phone  </h3></td> <td><h3> Desc  </h3></td> </tr>");
+    $('<tr><td>' + data.firstName + " " + data.lastName + '</td>' + '<td>' + data.phoneList[0].number.toString() + '</td>' + '<td>' +  data.phoneList[0].description.toString() + '</td>' + '</tr>').appendTo($("#resultstable"));
+        } // end if api/person/complete
+        else
+    {
+      var hobbystring = "";
+      for (i = 0; i <= data.HobbyList.length - 1; i++) {
+      if(data.HobbyList.length - 1 === i)
+      {
+             hobbystring = hobbystring + data.HobbyList[i].HobbyName.toString();  
+      }
+      else
+      {
+             hobbystring = hobbystring + data.HobbyList[i].HobbyName.toString() + ", ";   
+      }
+       }
+        
+        $('#resultstable').append("<tr><td><h3> Full Name </h3></td>  <td><h3> Hobbies  </h3></td> </tr>");
+    $('<tr><td>' + data.firstName + " " +data.lastName +  "</td> <td> " + hobbystring + '</td></tr>').appendTo($("#resultstable"));
     
+        } // end if personbyphone
+});
+    // gets json from the api api/person/contactinfo and processes it to show.
     
-    $('#resultstable').append("<tr><td><h3> I </h3></td>  <td><h3> Am  </h3></td>  <td><h3> Not </h3></td>  <td><h3> Implemented </h3></td> <td><h3> Yet </h3></td> </tr>");
     }); // creates top row of table with id resultstable.
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
