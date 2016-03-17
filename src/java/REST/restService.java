@@ -14,6 +14,9 @@ import com.google.gson.JsonParser;
 import entity.Hobby;
 import entity.InfoEntity;
 import entity.Person;
+
+import exceptions.PersonNotFoundException;
+
 import facade.Controller;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -38,7 +41,9 @@ import javax.ws.rs.core.MediaType;
  * @author Steffen
  */
 @Path("person")
+
 public class restService {
+
 
     Gson gson;
     Controller c = new Controller();
@@ -49,7 +54,9 @@ public class restService {
     /**
      * Creates a new instance of ApiResource
      */
+
     public restService() {
+
         gson = new GsonBuilder().setPrettyPrinting().create();
     }
 
@@ -62,6 +69,7 @@ public class restService {
     @Path("/complete")
     @Produces(MediaType.APPLICATION_JSON)
 
+
     public String getAllPersons() {
 
         List<Person> receivedList = c.getAllPersons();
@@ -73,6 +81,7 @@ public class restService {
             jO.addProperty("lastName", per.getLastName());
             JsonArray jaHobby = new JsonArray();
             for (Hobby h : per.getHobbyList()) {
+
                 JsonObject jo2 = new JsonObject();
                 jo2.addProperty("HobbyName", h.getName());
                 jaHobby.add(jo2);
@@ -89,13 +98,21 @@ public class restService {
     @Path("/personbyphone/{number}")
     @Produces(MediaType.APPLICATION_JSON)
 
-    public String getPersonByPhone(@PathParam("number") Integer phone) {
+
+    public String getPersonByPhone(@PathParam("number") Integer phone) throws PersonNotFoundException
+    {
 
         JsonObject jO = new JsonObject();
+        if (c.getPersonByPhoneNumber(phone) == null)
+        {
+            throw new PersonNotFoundException("No person with the given phone exsists!");
+        }
         jO.addProperty("firstName", c.getPersonByPhoneNumber(phone).getFirstName());
         jO.addProperty("lastName", c.getPersonByPhoneNumber(phone).getLastName());
         JsonArray jaHobby = new JsonArray();
-        for (Hobby h : c.getPersonByPhoneNumber(phone).getHobbyList()) {
+        for (Hobby h : c.getPersonByPhoneNumber(phone).getHobbyList())
+        {
+
             JsonObject jO2 = new JsonObject();
             jO2.addProperty("HobbyName", h.getName());
             jaHobby.add(jO2);
@@ -109,26 +126,45 @@ public class restService {
     @GET
     @Path("/contactinfo")
     @Produces(MediaType.APPLICATION_JSON)
-    public String getAllPersonsShowContactInfo() {
+
+    public String getAllPersonsShowContactInfo()
+    {
         return gson.toJson(c.getAllPersonsContactInfo());
     }
 
     @GET
     @Path("/contactinfo/{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    public String getPersonContactInfo(@PathParam("id") Integer id) {
+
+    public String getPersonContactInfo(@PathParam("id") Integer id) throws PersonNotFoundException
+    {
+        if (c.getPersonContactInfo(id) == null)
+        {
+            throw new PersonNotFoundException("No person with the given id exsists!");
+        }
+
         return gson.toJson(c.getPersonContactInfo(id));
     }
 
     @GET
     @Path("/complete/{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    public String getPersonById(@PathParam("id") Integer id) {
+
+    public String getPersonById(@PathParam("id") Integer id) throws PersonNotFoundException, Throwable
+    {
+        if (c.getPersonById(id) == null)
+        {
+            throw new PersonNotFoundException("No person with the given id exsists!");
+        }
+
         JsonObject jO = new JsonObject();
         jO.addProperty("firstName", c.getPersonById(id).getFirstName());
         jO.addProperty("lastName", c.getPersonById(id).getLastName());
         JsonArray jaHobby = new JsonArray();
-        for (Hobby h : c.getPersonById(id).getHobbyList()) {
+
+        for (Hobby h : c.getPersonById(id).getHobbyList())
+        {
+
             JsonObject jO2 = new JsonObject();
             jO2.addProperty("HobbyName", h.getName());
             jaHobby.add(jO2);
@@ -141,25 +177,27 @@ public class restService {
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
-    public void createPerson(String personJson) {
-        
-        
-            JsonObject jsonIn = new JsonParser().parse(personJson).getAsJsonObject();
 
-            String firstname = jsonIn.get("firstName").getAsString();
-            String lastname = jsonIn.get("lastName").getAsString();
+    public void createPerson(String personJson)
+    {
+
+        JsonObject jsonIn = new JsonParser().parse(personJson).getAsJsonObject();
+
+        String firstname = jsonIn.get("firstName").getAsString();
+        String lastname = jsonIn.get("lastName").getAsString();
+
+        JsonArray personHobbies = jsonIn.get("HobbyList").getAsJsonArray();
+        List<Hobby> hobbyList = new ArrayList();
+        for (int i = 0; i < personHobbies.size(); i++)
+        {
+            JsonObject currentHobby = (JsonObject) personHobbies.get(i);
+
+            hobbyList.add(new Hobby(currentHobby.get("HobbyName").getAsString()));
+        }
+
+        Person newPerson = new Person(firstname, lastname, hobbyList);
 
 
-            JsonArray personHobbies = jsonIn.get("HobbyList").getAsJsonArray();
-            List<Hobby> hobbyList = new ArrayList();
-            for (int i = 0; i < personHobbies.size(); i++) {
-                JsonObject currentHobby = (JsonObject) personHobbies.get(i);
-
-                hobbyList.add(new Hobby(currentHobby.get("HobbyName").getAsString()));
-            }
-
-            Person newPerson = new Person(firstname, lastname, hobbyList);
-             
         c.createNewPerson(newPerson);
     }
 
@@ -175,12 +213,15 @@ public class restService {
     @PUT
     @Path("/edit/{id}")
     @Consumes(MediaType.APPLICATION_JSON)
-    public void editPerson(@PathParam("id") Integer id, String personJson) {
 
+    public void editPerson(@PathParam("id") Integer id, String personJson) throws PersonNotFoundException
+    {
 
         Person personToEdit = null;
 
-        if ((personToEdit = c.getPersonById(id)) != null) {
+        if ((personToEdit = c.getPersonById(id)) != null)
+        {
+
             JsonObject jsonIn = new JsonParser().parse(personJson).getAsJsonObject();
 
             String firstname = jsonIn.get("firstName").getAsString();
@@ -191,7 +232,9 @@ public class restService {
 
             JsonArray personHobbies = jsonIn.get("HobbyList").getAsJsonArray();
             List<Hobby> HobbyList = new ArrayList();
+
             for (int i = 0; i < personHobbies.size(); i++) {
+
                 JsonObject currentHobby = (JsonObject) personHobbies.get(i);
 
                 personIn.addHobbyToPerson(new Hobby(currentHobby.get("HobbyName").getAsString()));
@@ -201,12 +244,25 @@ public class restService {
 
         }
 
+        else
+        {
+            throw new PersonNotFoundException("No person with the given id exsists!");
+        }
+
+
     }
 
     @DELETE
     @Path("{id}")
     @Consumes(MediaType.APPLICATION_JSON)
-    public void deletePerson(@PathParam("id") Integer id) {
+
+    public void deletePerson(@PathParam("id") Integer id) throws PersonNotFoundException
+    {
+        if(c.getPersonById(id) == null)
+        {
+            throw new PersonNotFoundException("No person with the given id exsists!");
+        }
+
         c.deletePerson(c.getPersonById(id));
     }
 

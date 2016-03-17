@@ -30,6 +30,9 @@ public class ApplicationConfig extends Application {
      */
     private void addRestResourceClasses(Set<Class<?>> resources) {
         resources.add(REST.restService.class);
+        resources.add(exceptions.NotFoundExceptionMapper.class);
+        resources.add(exceptions.PersonNotFoundExceptionMapper.class);
+        resources.add(exceptions.ThrowableMapper.class);
     }
     
 }

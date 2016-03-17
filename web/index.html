@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -724,3 +725,589 @@ $.getJSON( "api/person/complete", function( data ) {
         <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
     </body>
 </html>
+=======
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <link rel="icon" href="../../favicon.ico">
+
+        <title>Dashboard Template for Bootstrap</title>
+
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+        <script src="newjavascript.js" type="text/javascript"></script>
+        <!-- jQuery library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+
+        <!-- Latest compiled JavaScript -->
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+          <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+          <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <![endif]-->
+        
+        <style>
+            
+            
+            #mainTable {
+    border-collapse: collapse;
+}
+
+#mainTable td, #mainTable tr, #mainTable table {
+    border: 2px solid black;
+}
+            
+        </style>
+        
+    </head>
+
+    <body>
+
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>  
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="index.html">CA 2</a>
+                </div>
+                <div id="navbar" class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a id="groupdoc" href="#">group Documentation</a></li>
+                        <li><a id="howapiworks" href="#">Api Documentation</a></li>
+                    </ul>
+                    <form class="navbar-form navbar-right"> 
+                    </form>
+                </div>
+            </div>
+        </nav>
+
+        <div class="container-fluid">
+            <div class="row">
+                <h2 class="sub-header">hvis du ser det her så fuck off.</h2>
+                <div class="col-sm-3 col-md-2 sidebar">
+                    <ul class="nav nav-sidebar">
+                        <li><a id="getallpers" href="#">getAllPersons</a></li>
+                        <li><a id="usecrod" href="#">CRUD</a></li>
+                        <li><a id="getallpersshowcontinf" href="#">getAllPersonsShowContactInfo</a></li>
+                        <li><a id="searchlink" href="#">Search</a></li>
+                    </ul>
+                </div>
+
+
+
+
+                <h2 id="subheader" class="sub-header">Dashboard</h2>
+                <div class="table-responsive">
+                    
+                    <table id="mytable" class="table table-striped">
+
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Header</th>
+                                <th>Header</th>
+                                <th>Header</th>
+                                <th>Header</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1,001</td>
+                                <td>Lorem</td>
+                                <td>ipsum</td>
+                                <td>dolor</td>
+                                <td>sit</td>
+                            </tr>
+                            <tr>
+                                <td>1,002</td>
+                                <td>amet</td>
+                                <td>consectetur</td>
+                                <td>adipiscing</td>
+                                <td>elit</td>
+                            </tr>
+                            <tr>
+                                <td>1,003</td>
+                                <td>Integer</td>
+                                <td>nec</td>
+                                <td>odio</td>
+                                <td>Praesent</td>
+                            </tr>
+                            <tr>
+                                <td>1,003</td>
+                                <td>libero</td>
+                                <td>Sed</td>
+                                <td>cursus</td>
+                                <td>ante</td>
+                            </tr>
+                            <tr>
+                                <td>1,004</td>
+                                <td>dapibus</td>
+                                <td>diam</td>
+                                <td>Sed</td>
+                                <td>nisi</td>
+                            </tr>
+                            <tr>
+                                <td>1,005</td>
+                                <td>Nulla</td>
+                                <td>quis</td>
+                                <td>sem</td>
+                                <td>at</td>
+                            </tr>
+                            <tr>
+                                <td>1,006</td>
+                                <td>nibh</td>
+                                <td>elementum</td>
+                                <td>imperdiet</td>
+                                <td>Duis</td>
+                            </tr>
+                            <tr>
+                                <td>1,007</td>
+                                <td>sagittis</td>
+                                <td>ipsum</td>
+                                <td>Praesent</td>
+                                <td>mauris</td>
+                            </tr>
+                            <tr>
+                                <td>1,008</td>
+                                <td>Fusce</td>
+                                <td>nec</td>
+                                <td>tellus</td>
+                                <td>sed</td>
+                            </tr>
+                            <tr>
+                                <td>1,009</td>
+                                <td>augue</td>
+                                <td>semper</td>
+                                <td>porta</td>
+                                <td>Mauris</td>
+                            </tr>
+                            <tr>
+                                <td>1,010</td>
+                                <td>massa</td>
+                                <td>Vestibulum</td>
+                                <td>lacinia</td>
+                                <td>arcu</td>
+                            </tr>
+                            <tr>
+                                <td>1,011</td>
+                                <td>eget</td>
+                                <td>nulla</td>
+                                <td>Class</td>
+                                <td>aptent</td>
+                            </tr>
+                            <tr>
+                                <td>1,012</td>
+                                <td>taciti</td>
+                                <td>sociosqu</td>
+                                <td>ad</td>
+                                <td>litora</td>
+                            </tr>
+                            <tr>
+                                <td>1,013</td>
+                                <td>torquent</td>
+                                <td>per</td>
+                                <td>conubia</td>
+                                <td>nostra</td>
+                            </tr>
+                            <tr>
+                                <td>1,014</td>
+                                <td>per</td>
+                                <td>inceptos</td>
+                                <td>himenaeos</td>
+                                <td>Curabitur</td>
+                            </tr>
+                            <tr>
+                                <td>1,015</td>
+                                <td>sodales</td>
+                                <td>ligula</td>
+                                <td>in</td>
+                                <td>libero</td>
+                            </tr>
+                        </tbody>
+                    </table>
+               
+                    
+                    <div id="crod" style="" hidden>
+                         <p><b><a id="crod_Create" href="#">Create</a> </b></p>
+                         <p><b><a id="crod_Edit" href="#">Edit</a> </b></p>
+                         <p><b><a id="crod_Delete" href="#">Delete</a> </b></p>
+                    </div>
+                    
+         
+                      <div id="delete" hidden>
+                    
+                    <form style="margin-right:20px;">
+  <fieldset class="form-group" >
+    <label for="exampleInputEmail1">Delete?????? or what</label>
+    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+    <small class="text-muted">We'll never share your email with anyone else.</small>
+  </fieldset>
+  <fieldset class="form-group">
+    <label for="exampleInputPassword1">Password</label>
+    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+  </fieldset>
+  <fieldset class="form-group">
+    <label for="exampleSelect1">Example select</label>
+    <select class="form-control" id="exampleSelect1">
+      <option>1</option>
+      <option>2</option>
+      <option>3</option>
+      <option>4</option>
+      <option>5</option>
+    </select>
+  </fieldset>
+  <fieldset class="form-group">
+    <label for="exampleSelect2">Example multiple select</label>
+    <select multiple class="form-control" id="exampleSelect2">
+      <option>1</option>
+      <option>2</option>
+      <option>3</option>
+      <option>4</option>
+      <option>5</option>
+    </select>
+  </fieldset>
+  <fieldset class="form-group">
+    <label for="exampleTextarea">Example textarea</label>
+    <textarea class="form-control" id="exampleTextarea" rows="3"></textarea>
+  </fieldset>
+  <fieldset class="form-group">
+    <label for="exampleInputFile">File input</label>
+    <input type="file" class="form-control-file" id="exampleInputFile">
+    <small class="text-muted">This is some placeholder block-level help text for the above input. It's a bit lighter and easily wraps to a new line.</small>
+  </fieldset>
+  <div class="radio">
+    <label>
+      <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
+      Option one is this and that&mdash;be sure to include why it's great
+    </label>
+  </div>
+  <div class="radio">
+    <label>
+      <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+      Option two can be something else and selecting it will deselect option one
+    </label>
+  </div>
+  <div class="radio disabled">
+    <label>
+      <input type="radio" name="optionsRadios" id="optionsRadios3" value="option3" disabled>
+      Option three is disabled
+    </label>
+  </div>
+  <div class="checkbox">
+    <label>
+      <input type="checkbox"> Check me out
+    </label>
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+                    
+                </div>
+       
+                    
+                
+                <div id="edit" hidden>
+                    
+                    <form style="margin-right:20px;">
+  <fieldset class="form-group" >
+    <label for="exampleInputEmail1">Edit Thingy??...</label>
+    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+    <small class="text-muted">We'll never share your email with anyone else.</small>
+  </fieldset>
+  <fieldset class="form-group">
+    <label for="exampleInputPassword1">Password</label>
+    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+  </fieldset>
+  <fieldset class="form-group">
+    <label for="exampleSelect1">Example select</label>
+    <select class="form-control" id="exampleSelect1">
+      <option>1</option>
+      <option>2</option>
+      <option>3</option>
+      <option>4</option>
+      <option>5</option>
+    </select>
+  </fieldset>
+  <fieldset class="form-group">
+    <label for="exampleSelect2">Example multiple select</label>
+    <select multiple class="form-control" id="exampleSelect2">
+      <option>1</option>
+      <option>2</option>
+      <option>3</option>
+      <option>4</option>
+      <option>5</option>
+    </select>
+  </fieldset>
+  <fieldset class="form-group">
+    <label for="exampleTextarea">Example textarea</label>
+    <textarea class="form-control" id="exampleTextarea" rows="3"></textarea>
+  </fieldset>
+  <fieldset class="form-group">
+    <label for="exampleInputFile">File input</label>
+    <input type="file" class="form-control-file" id="exampleInputFile">
+    <small class="text-muted">This is some placeholder block-level help text for the above input. It's a bit lighter and easily wraps to a new line.</small>
+  </fieldset>
+  <div class="radio">
+    <label>
+      <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
+      Option one is this and that&mdash;be sure to include why it's great
+    </label>
+  </div>
+  <div class="radio">
+    <label>
+      <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+      Option two can be something else and selecting it will deselect option one
+    </label>
+  </div>
+  <div class="radio disabled">
+    <label>
+      <input type="radio" name="optionsRadios" id="optionsRadios3" value="option3" disabled>
+      Option three is disabled
+    </label>
+  </div>
+  <div class="checkbox">
+    <label>
+      <input type="checkbox"> Check me out
+    </label>
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+                    
+                </div>
+                    
+                    
+                    
+                      <div id="create" hidden>
+                    
+                    <form style="margin-right:20px;">
+  <fieldset class="form-group" >
+    <label for="exampleInputEmail1">Create thingy...?</label>
+    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+    <small class="text-muted">We'll never share your email with anyone else.</small>
+  </fieldset>
+  <fieldset class="form-group">
+    <label for="exampleInputPassword1">Password</label>
+    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+  </fieldset>
+  <fieldset class="form-group">
+    <label for="exampleSelect1">Example select</label>
+    <select class="form-control" id="exampleSelect1">
+      <option>1</option>
+      <option>2</option>
+      <option>3</option>
+      <option>4</option>
+      <option>5</option>
+    </select>
+  </fieldset>
+  <fieldset class="form-group">
+    <label for="exampleSelect2">Example multiple select</label>
+    <select multiple class="form-control" id="exampleSelect2">
+      <option>1</option>
+      <option>2</option>
+      <option>3</option>
+      <option>4</option>
+      <option>5</option>
+    </select>
+  </fieldset>
+  <fieldset class="form-group">
+    <label for="exampleTextarea">Example textarea</label>
+    <textarea class="form-control" id="exampleTextarea" rows="3"></textarea>
+  </fieldset>
+  <fieldset class="form-group">
+    <label for="exampleInputFile">File input</label>
+    <input type="file" class="form-control-file" id="exampleInputFile">
+    <small class="text-muted">This is some placeholder block-level help text for the above input. It's a bit lighter and easily wraps to a new line.</small>
+  </fieldset>
+  <div class="radio">
+    <label>
+      <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
+      Option one is this and that&mdash;be sure to include why it's great
+    </label>
+  </div>
+  <div class="radio">
+    <label>
+      <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+      Option two can be something else and selecting it will deselect option one
+    </label>
+  </div>
+  <div class="radio disabled">
+    <label>
+      <input type="radio" name="optionsRadios" id="optionsRadios3" value="option3" disabled>
+      Option three is disabled
+    </label>
+  </div>
+  <div class="checkbox">
+    <label>
+      <input type="checkbox"> Check me out
+    </label>
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+                    
+                </div>
+                    
+                    <div id="getallpersons" hidden>
+                        
+                        get all persons here.
+                        
+                    </div>
+                    
+                    
+                    <div id="getallpersonsshowcontactinfo" hidden>
+                        
+                        get all persons show contact info here
+                        
+                    </div>
+                    
+                    
+                    <div id="search" hidden>
+                        
+                        search here.
+                        
+                    </div>
+                    
+                    <div id="groupdocumentation" hidden>
+                        
+                        group documentation here.
+                        
+                    </div>
+                    
+                    <div id="apiworks" hidden>
+                        
+                    <table id="mainTable" class="table table-striped" style=" width: 95%">
+            <tr>
+                <th>METHOD & PATH</th>
+                <th>DESCRIPTION</th>
+            </tr>
+            <tr>    
+                <td>
+                    <h3>GET</h3>
+                </td>
+                <td>
+                </td>
+            </tr>
+            <tr >
+                <td class="td">api/person/complete </td>
+                <td class="td">Returns all persons with name and hobbies as a list of json objects</td>
+            </tr>
+            <tr>
+                <td class="td">api/person/complete/{id} </td>
+                <td class="td">Returns the person with the given {id} as a json object (Remeber in our DB only every second id is a person, the rest is companies).  </td>
+            </tr>
+            <tr>
+                <td class="td">api/person/contactinfo </td>
+                <td class="td">Returns all persons with name and contact information, as a list of json objects</td>
+            </tr>
+            <tr>
+                <td class="td">api/person/contactinfo/{id}</td>
+                <td class="td">Returns the person, with the given {id}, and it's contact information, as a json object</td>
+            </tr>
+            <tr>    
+                <td>
+                    <h3>POST</h3>
+                    
+                </td>
+                                <td>
+                </td>
+            </tr>
+
+            <tr>    
+                <td class="td">api/person </td>               
+                <td class="td">Creates a new person, if provided with a valid json object. A person may be created with firstName, lastName and hobbyList like this: 
+                    <b>{
+                        "firstName": "Peter",
+                        "lastName": "Lefort",
+                        "phoneList": 
+                        [
+                        {
+                        "number": 88996521,
+                        "description": "Home Number"
+                        }
+                        ]
+                        }</b>. Or it may simply be created with only name like this:<b> {
+                        "firstName": "Peter",
+                        "lastName": "Lefort"
+
+                        }</b>
+                </td>
+            </tr>
+            <tr>    
+                <td><h3>PUT</h3></td>               
+                <td></td>
+            </tr>
+            <tr>    
+                <td class="td">api/person/{id} </td>               
+                <td class="td">Edits a person if provided with a valid person json object and an existing {id}. May use the same person constructors as given in the POST section above</td>
+            </tr>
+                <tr>    
+                <td>
+                    <h3>DELETE</h3>
+                </td>
+                                <td>
+                </td>
+            </tr>
+            <tr>    
+                <td class="td">api/person/{id} </td>
+                <td class="td">Deletes the person with the given {id}.</td>
+            </tr>
+        </table>
+                        
+                    </div>
+                    
+       
+                
+            </div>
+        </div>
+
+ </div>
+<script type="text/javascript">
+
+var hideAll = function() 
+{
+ $('#mytable').hide(); $('#create').hide(); $('#edit').hide(); $('#delete').hide();
+ $('#apiworks').hide(); $('#groupdocumentation').hide(); $('#search').hide(); 
+ $('#getallpersonsshowcontactinfo').hide();  $('#getallpersons').hide(); $('#crod').hide(); 
+};
+ // subheader   
+$('#usecrod').click(function(){ hideAll();  $('#crod').show();  $('#subheader').html("Select a crud Operation"); });
+$('#crod_Create').click(function(){  hideAll(); $('#create').show(); $('#subheader').html("Create Operation");  });
+$('#crod_Delete').click(function(){  hideAll(); $('#delete').show(); $('#subheader').html("Delete Operation"); });
+$('#crod_Edit').click(function(){    hideAll(); $('#edit').show(); $('#subheader').html("Edit Operation"); });
+$('#groupdoc').click(function(){  hideAll(); $('#groupdocumentation').show(); $('#subheader').html("Group Documentation of Sebastian Ryberg, Steffen Lefort, Kasper Pagh"); });
+$('#howapiworks').click(function(){  hideAll(); $('#apiworks').show();  $('#subheader').html("Api Documentation"); });
+$('#searchlink').click(function(){    hideAll(); $('#search').show();  $('#subheader').html("Search"); });
+$('#getallpersshowcontinf').click(function(){  hideAll(); $('#getallpersonsshowcontactinfo').show(); $('#subheader').html("All Persons Contact info.");  });
+$('#getallpers').click(function(){    hideAll(); $('#getallpersons').show(); $('#subheader').html("All persons");  });
+</script>
+
+
+
+
+
+
+        <!-- Bootstrap core JavaScript
+        ================================================== -->
+        <!-- Placed at the end of the document so the pages load faster -->
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+        <script src="../../dist/js/bootstrap.min.js"></script>
+        <!-- Just to make our placeholder images work. Don't actually copy the next line! -->
+        <script src="../../assets/js/vendor/holder.min.js"></script>
+        <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+        <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
+    </body>
+</html>
+>>>>>>> Exceptions og errors
