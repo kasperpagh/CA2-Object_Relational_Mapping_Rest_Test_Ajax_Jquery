@@ -27,6 +27,7 @@ import static org.junit.Assert.*;
 /**
  *
  * @author kaspe
+ * Databasen skal være tom når man kører testen
  */
 public class TestFacade
 {
