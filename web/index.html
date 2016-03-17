@@ -28,7 +28,7 @@
         <![endif]-->
         
         <style>
-            
+     
             
             #mainTable {
     border-collapse: collapse;
@@ -84,7 +84,7 @@
                 <h2 id="subheader" class="sub-header">Dashboard</h2>
                 <div class="table-responsive">
                     
-                    <table id="mytable" class="table table-striped">
+                    <table id="mytable" class="table table-striped" style="width: 95%;">
 
                         <thead>
                             <tr>
@@ -283,7 +283,7 @@
       <input type="checkbox"> Check me out
     </label>
   </div>
-  <button type="submit" class="btn btn-primary">Submit</button>
+  <button type="button" id="deletebtn" class="btn btn-primary">Submit</button>
 </form>
                     
                 </div>
@@ -354,7 +354,7 @@
       <input type="checkbox"> Check me out
     </label>
   </div>
-  <button type="submit" class="btn btn-primary">Submit</button>
+                        <button id="editbtn" type="button" class="btn btn-primary">Submit</button>
 </form>
                     
                 </div>
@@ -425,30 +425,52 @@
       <input type="checkbox"> Check me out
     </label>
   </div>
-  <button type="submit" class="btn btn-primary">Submit</button>
+                        <button id="createbtn" type="button" class="btn btn-primary">Submit</button>
 </form>
                     
                 </div>
                     
                     <div id="getallpersons" hidden>
-                        
-                        get all persons here.
+                        <table id="getallpersonstable" style="width: 95%;" class="table table-striped">
+                            
+                        </table>
                         
                     </div>
                     
                     
                     <div id="getallpersonsshowcontactinfo" hidden>
                         
-                        get all persons show contact info here
+                         <table id="getallpersonsshowcontactinfotable"  style="width: 95%;" class="table table-striped">
+                            
+                        </table>
+                      
                         
                     </div>
                     
                     
-                    <div id="search" hidden>
-                        
-                        search here.
-                        
+                    <div id="search" hidden >
+
+                  <div class="dropdown">
+               
+
+                      <h3>Select how you would search.</h3>
+                      <select id="searchbyul" class="form-control" style="width: auto;">
+  <option value="api/complete/">Search persons using ID</option>
+  <option value="api/contactinfo/">Search contactinfo using ID</option>
+  <option value="api/personbyphone/">Search persons using phonenumber</option>
+</select>
+  </div>       
+                        <br>
+                        <h3> Search criteria </h3>
+                        <textarea placeholder="Search criteria" class="form-control" id="searchtextarea" style="width:280px;" rows="1"></textarea>
+  <br>
+  <button type="button" id="searchbtn" class="btn btn-primary" value="Submit">Search</button>
                     </div>
+                    <div id="results" hidden>
+                        <table id="resultstable" style="width: 95%;" class="table table-striped"></table>
+                    </div>
+                    
+     
                     
                     <div id="groupdocumentation" hidden>
                         
@@ -458,7 +480,7 @@
                     
                     <div id="apiworks" hidden>
                         
-                    <table id="mainTable" class="table table-striped" style=" width: 95%">
+                    <table id="mainTable" class="table table-striped" style="width: 95%;">
             <tr>
                 <th>METHOD & PATH</th>
                 <th>DESCRIPTION</th>
@@ -551,17 +573,103 @@ var hideAll = function()
  $('#mytable').hide(); $('#create').hide(); $('#edit').hide(); $('#delete').hide();
  $('#apiworks').hide(); $('#groupdocumentation').hide(); $('#search').hide(); 
  $('#getallpersonsshowcontactinfo').hide();  $('#getallpersons').hide(); $('#crod').hide(); 
-};
+ $('#results').hide(); 
+ }; // hides all divs
+ // searchcriteriaheader
+ 
+
+ 
  // subheader   
-$('#usecrod').click(function(){ hideAll();  $('#crod').show();  $('#subheader').html("Select a crud Operation"); });
+$('#usecrod').click(function(){ hideAll();  $('#crod').show();  $('#subheader').html("Select a crud Operation"); }); // first hides all divs then shows crod links and sets subheader html to corresponding title.
+
 $('#crod_Create').click(function(){  hideAll(); $('#create').show(); $('#subheader').html("Create Operation");  });
+$('#createbtn').click(function(){    hideAll(); $('#subheader').html("Operation Failed/Successfull statement for create."); });
+
 $('#crod_Delete').click(function(){  hideAll(); $('#delete').show(); $('#subheader').html("Delete Operation"); });
+$('#deletebtn').click(function(){    hideAll(); $('#subheader').html("Operation Failed/Successfull statement for delete."); });
+
 $('#crod_Edit').click(function(){    hideAll(); $('#edit').show(); $('#subheader').html("Edit Operation"); });
+$('#editbtn').click(function(){    hideAll();  $('#subheader').html("Operation Failed/Successfull statement for edit"); });
+
+
+// respondmessage all messages here..
+
+
+
+
+
+
 $('#groupdoc').click(function(){  hideAll(); $('#groupdocumentation').show(); $('#subheader').html("Group Documentation of Sebastian Ryberg, Steffen Lefort, Kasper Pagh"); });
 $('#howapiworks').click(function(){  hideAll(); $('#apiworks').show();  $('#subheader').html("Api Documentation"); });
+
+
+
+
+
+
+
 $('#searchlink').click(function(){    hideAll(); $('#search').show();  $('#subheader').html("Search"); });
-$('#getallpersshowcontinf').click(function(){  hideAll(); $('#getallpersonsshowcontactinfo').show(); $('#subheader').html("All Persons Contact info.");  });
-$('#getallpers').click(function(){    hideAll(); $('#getallpersons').show(); $('#subheader').html("All persons");  });
+$('#searchbtn').click(function(){    hideAll(); $('#results').show(); $('#resultstable').show(); 
+    $('#resultstable tr').remove(); // to clear the results so we dont get duplicates.
+    $('#subheader').html("Search results");
+    var whattosearchfor = $( "#searchbyul" ).val();
+    var searchcrit = $('#searchtextarea').val();
+ //   alert(whattosearchfor + searchcrit);
+    $.getJSON( whattosearchfor + searchcrit, function( data ) {
+        
+  $.each( data, function( key, val ) {
+   
+
+    $('<tr><td>' + val.firstName + " " + val.lastName + '</td>').appendTo($("#resultstable"));
+  });
+}); // gets json from the api api/person/contactinfo and processes it to show.
+        
+
+    
+    
+    $('#resultstable').append("<tr><td><h3> I </h3></td>  <td><h3> Am  </h3></td>  <td><h3> Not </h3></td>  <td><h3> Implemented </h3></td> <td><h3> Yet </h3></td> </tr>");
+    }); // creates top row of table with id resultstable.
+
+
+
+$('#getallpersshowcontinf').click(function(){  hideAll(); $('#getallpersonsshowcontactinfo').show(); $('#subheader').html("All Persons Contact info."); 
+
+$.getJSON( "api/person/contactinfo", function( data ) {
+  $('#getallpersonsshowcontactinfotable tr').remove();
+  $('#getallpersonsshowcontactinfotable').append("<tr><td><h3> Full name </h3></td>  <td><h3> Phone number </h3></td>  <td><h3> Description </h3></td> </tr>");
+  $.each( data, function( key, val ) {
+   
+
+    $('<tr><td>' + val.firstName + " " + val.lastName + '</td>' + '<td>' + "phone number : " + val.phoneList[0].number.toString() + '</td>' + '<td>' + "phone number : " + val.phoneList[0].description.toString() + '</td>' + '</tr>').appendTo($("#getallpersonsshowcontactinfotable"));
+  });
+}); // gets json from the api api/person/contactinfo and processes it to show.
+
+
+
+});
+
+
+$('#getallpers').click(function(){    hideAll(); $('#getallpersons').show(); $('#subheader').html("All persons");
+$.getJSON( "api/person/complete", function( data ) {
+  $('#getallpersonstable tr').remove();
+  $('#getallpersonstable').append("<tr><td><h3> Full name </h3></td>  <td><h3> Hobbies </h3></td> </tr>");
+  $.each( data, function( key, val ) {
+    var hobbystring = "";
+    for (i = 0; i <= val.HobbyList.length - 1; i++) {
+      if(val.HobbyList.length - 1 === i)
+      {
+             hobbystring = hobbystring + val.HobbyList[i].HobbyName.toString();  
+      }
+      else
+      {
+             hobbystring = hobbystring + val.HobbyList[i].HobbyName.toString() + ", ";   
+      }
+
+    };
+    $('<tr><td>' + val.firstName + " " + val.lastName + '</td>' + '<td>' + hobbystring + '</td>' + '</tr>').appendTo($("#getallpersonstable"));
+  }); 
+});
+}); // gets json from the api api/person/complete and processes it to show.
 </script>
 
 
