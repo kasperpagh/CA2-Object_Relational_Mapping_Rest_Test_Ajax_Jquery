@@ -37,7 +37,7 @@ public class Hobby implements Serializable
     private String name;
     private String description;
     @ManyToMany(mappedBy = "hobbyList", cascade = CascadeType.ALL)
-    private Collection<Person> personList;
+    private static Collection<Person> personList;
 
  
 

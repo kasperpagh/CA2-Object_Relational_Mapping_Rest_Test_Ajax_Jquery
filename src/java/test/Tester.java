@@ -30,9 +30,9 @@ public class Tester
 
     public static void main(String[] args)
     {
-        //  Persistence.generateSchema("bubberPU", null);
+        //  Persistence.generateSchema("CA2-Object_Relational_Mapping_Rest_Test_Ajax_JqueryPU", null);
         Tester test = new Tester();
-        test.CreateUsers();
+       test.CreateUsers();
 
     }
 
@@ -296,9 +296,11 @@ public class Tester
         {
 
             ///// person 1 
+
             Person ie = new Person(firstnames.get(rand.nextInt(firstnames.size())), lastnames.get(rand.nextInt(lastnames.size())));
             
             Phone p = new Phone(numbers.get(rand.nextInt(numbers.size())), PhoneDesc.get(rand.nextInt(PhoneDesc.size())), ie);
+
             ie.addPhoneToInfoEntity(p);
 
             Hobby hobby1 = new Hobby();

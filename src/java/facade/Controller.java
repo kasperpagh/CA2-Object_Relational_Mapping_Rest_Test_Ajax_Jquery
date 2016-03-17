@@ -23,6 +23,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 
 /**
  *
@@ -50,14 +51,17 @@ public class Controller {
 
     public List<Person> getAllPersons() {
         EntityManager em = emf.createEntityManager();
+
         try {
             Query query = em.createNamedQuery("Person.findAll", Person.class);
             return query.getResultList();
 
         } finally {
+
             em.close();
         }
     }
+
 
 //    public List<Company> getAllCompanies() {
 //        EntityManager em = emf.createEntityManager();
