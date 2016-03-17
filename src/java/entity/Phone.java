@@ -35,6 +35,7 @@ public class Phone implements Serializable
     private String description;
     @ManyToOne(cascade = CascadeType.ALL)
     private InfoEntity infoEntity;
+    private Person person;
 
     public Phone()
     {
@@ -45,9 +46,36 @@ public class Phone implements Serializable
         this.number = number;
         this.description = description;
         this.infoEntity = infoEntity;
+
+    }
+    
+    public Integer getId()
+    {
+        return id;
     }
 
-  
+    public void setId(Integer id)
+    {
+
+        this.id = id;
+    }
+
+    public int getNumber() {
+        return number;
+    }
+
+    public void setNumber(int number) {
+        this.number = number;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
 
     public InfoEntity getInfoEntity()
     {
@@ -59,24 +87,19 @@ public class Phone implements Serializable
         this.infoEntity = infoEntity;
     }
 
-    public int getNumber()
-    {
-        return number;
-    }
+//    public Person getPerson()
+//    {
+//        return person;
+//    }
+//
+//    public void setPerson(Person person)
+//    {
+//
+//        this.person = person;
+//    }
 
-    public void setNumber(int number)
-    {
-        this.number = number;
-    }
+  
 
-    public String getDescription()
-    {
-        return description;
-    }
-
-    public void setDescription(String description)
-    {
-        this.description = description;
-    }
+    
 
 }

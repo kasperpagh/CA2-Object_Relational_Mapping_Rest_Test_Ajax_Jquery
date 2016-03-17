@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            .td
+            {
+                border: 1px solid black;
+            }
+        </style>
+    </head>
+    <body>
+        <table id="mainTable" style="border: 4px solid blue; width: 100%">
+            <tr>
+                <th>METHOD & PATH</th>
+                <th>DESCRIPTION</th>
+            </tr>
+            <tr>    
+                <td>
+                    <h3>GET</h3>
+                </td>
+            </tr>
+            <tr >
+                <td class="td">api/person/complete |</td>
+                <td class="td">Returns all persons with name and hobbies as a list of json objects</td>
+            </tr>
+            <tr>
+                <td class="td">api/person/complete/{id} |</td>
+                <td class="td">Returns the person with the given {id} as a json object (Remeber in our DB only every second id is a person, the rest is companies).  </td>
+            </tr>
+            <tr>
+                <td class="td">api/person/contactinfo |</td>
+                <td class="td">Returns all persons with name and contact information, as a list of json objects</td>
+            </tr>
+            <tr>
+                <td class="td">api/person/contactinfo/{id}|</td>
+                <td class="td">Returns the person, with the given {id}, and it's contact information, as a json object</td>
+            </tr>
+            <tr>    
+                <td>
+                    <h3>POST</h3>
+                </td>
+            </tr>
+
+            <tr>    
+                <td class="td">api/person |</td>               
+                <td class="td">Creates a new person, if provided with a valid json object. A person may be created with firstName, lastName and hobbyList like this: 
+                    <b>{
+                        "firstName": "Peter",
+                        "lastName": "Lefort",
+                        "phoneList": 
+                        [
+                        {
+                        "number": 88996521,
+                        "description": "Home Number"
+                        }
+                        ]
+                        }</b>. Or it may simply be created with only name like this:<b> {
+                        "firstName": "Peter",
+                        "lastName": "Lefort"
+
+                        }</b>
+                </td>
+            </tr>
+            <tr>    
+                <td><h3>PUT</h3></td>               
+                <td></td>
+            </tr>
+            <tr>    
+                <td class="td">api/person/{id} |</td>               
+                <td class="td">Edits a person if provided with a valid person json object and an existing {id}. May use the same person constructors as given in the POST section above</td>
+            </tr>
+                <tr>    
+                <td>
+                    <h3>DELETE</h3>
+                </td>
+            </tr>
+            <tr>    
+                <td class="td">api/person/{id} |</td>
+                <td class="td">Deletes the person with the given {id}.</td>
+            </tr>
+        </table>
+    </body>
+</html>

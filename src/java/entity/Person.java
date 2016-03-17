@@ -33,14 +33,14 @@ public class Person extends InfoEntity implements Serializable
 {
 
     private static final long serialVersionUID = 1L;
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+//    @Id
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    private Integer id;
     private String firstName;
     private String lastName;
 
     @ManyToMany(cascade = CascadeType.ALL)
-    private Collection<Hobby> hobbyList;
+    private List<Hobby> hobbyList;
 
     public void addHobbyToPerson(Hobby h)
     {
@@ -58,14 +58,28 @@ public class Person extends InfoEntity implements Serializable
     {
     }
 
-    public Person(String firstName, String lastName, Collection<Hobby> hobbyList)
+    public Person(Integer id, String firstName, String lastName, List<Hobby> hobbyList)
     {
+        this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.hobbyList = hobbyList;
     }
+    
+    public Person(Integer id, String firstName, String lastName)
+    {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
+    
+    public Person(String firstName, String lastName)
+    {
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
 
-    public Collection<Hobby> getHobbyList()
+    public List<Hobby> getHobbyList()
     {
         return hobbyList;
     }
@@ -97,15 +111,15 @@ public class Person extends InfoEntity implements Serializable
     }
 
     
-    public Integer getId()
-    {
-        return id;
-    }
-
-    public void setId(Integer id)
-    {
-        this.id = id;
-    }
+//    public Integer getId()
+//    {
+//        return id;
+//    }
+//
+//    public void setId(Integer id)
+//    {
+//        this.id = id;
+//    }
 
 
 
