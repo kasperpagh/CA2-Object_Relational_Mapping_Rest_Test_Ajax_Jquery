@@ -5,6 +5,7 @@
  */
 package test;
 
+import deploy.DeploymentConfiguration;
 import entity.Address;
 import entity.CityInfo;
 import entity.Company;
@@ -28,13 +29,13 @@ import javax.persistence.Persistence;
 public class Tester
 {
 
-    public static void main(String[] args)
-    {
-        //  Persistence.generateSchema("CA2-Object_Relational_Mapping_Rest_Test_Ajax_JqueryPU", null);
-        Tester test = new Tester();
-       test.CreateUsers();
-
-    }
+//    public static void main(String[] args)
+//    {
+//        //  Persistence.generateSchema("CA2-Object_Relational_Mapping_Rest_Test_Ajax_JqueryPU", null);
+//        Tester test = new Tester();
+//       test.CreateUsers();
+//
+//    }
 
     //<editor-fold defaultstate="collapsed" desc="all arrays.."> 
 //<editor-fold defaultstate="collapsed" desc="firstnames array">
@@ -288,8 +289,9 @@ public class Tester
 
     public void CreateUsers()
     {
+        
         Persistence.generateSchema("CA2-Object_Relational_Mapping_Rest_Test_Ajax_JqueryPU", null);
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("CA2-Object_Relational_Mapping_Rest_Test_Ajax_JqueryPU");
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory(DeploymentConfiguration.PU_NAME);
         EntityManager em = emf.createEntityManager();
 
         for (int i = 0; i < 25; i++)

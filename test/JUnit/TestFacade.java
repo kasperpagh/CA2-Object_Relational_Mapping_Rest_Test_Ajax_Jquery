@@ -5,6 +5,7 @@
  */
 package JUnit;
 
+import deploy.DeploymentConfiguration;
 import entity.Address;
 import entity.CityInfo;
 import entity.Company;
@@ -59,7 +60,7 @@ public class TestFacade
     {
 
         Persistence.generateSchema("CA2-Object_Relational_Mapping_Rest_Test_Ajax_JqueryPU", null);
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("CA2-Object_Relational_Mapping_Rest_Test_Ajax_JqueryPU");
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory(DeploymentConfiguration.PU_NAME);
         em = emf.createEntityManager();
 
         ie = new Person("kasper", "pagh", null);
